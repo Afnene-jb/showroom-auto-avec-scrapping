@@ -2,12 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
     "app": {
-      "root": "src",
+      "root": ".",
       "framework": "angular"
     },
     "scraper": {
       "root": "scraper",
-      "runtime": "node"
+      "runtime": "node",
+      "entrypoint": "server.js"
     }
   },
   "rewrites": [
