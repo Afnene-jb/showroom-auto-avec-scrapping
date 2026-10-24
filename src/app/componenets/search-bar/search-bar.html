@@ -1,0 +1,24 @@
+<div class="container">
+  <label>Brand</label>
+  <input type="text" placeholder="Audi, BMW, Jaguar..." #brand (input)="selectAutos(brand.value)" /><!--liste d'évenement-->
+
+  <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+</div>
+<div class="cars-container">
+  @for (auto of selectedAutos; track auto.id) {
+    <div class="auto-card">
+      <img [src]="`images/${auto.photo}`" />
+      <div class="details">
+        <h3>{{ auto.brand }} {{ auto.model }}</h3>
+        <p>
+          Power : {{ auto.power }} <br />
+          Price : {{ auto.price }}TND <br />
+          Only {{ auto.availability }} units in stock
+        </p>
+      </div>
+      <div class="see_more">
+        <button (click)="selectCar(auto)">See more...</button>
+      </div>
+    </div>
+  }
+</div>

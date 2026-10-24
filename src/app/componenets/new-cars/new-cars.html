@@ -1,0 +1,25 @@
+<h2 class="title">Voitures sur automobile.tn</h2>
+@let cars = cars$ | async;
+@if (cars === null) {
+  <p class="msg">Recherche en cours sur automobile.tn...</p>
+} @else if (cars.length === 0) {
+  <p class="msg">Aucune voiture trouvée. Vérifiez que le serveur du dossier scraper est lancé (<code>npm start</code>).</p>
+} @else {
+  <p class="msg">{{ cars.length }} voitures trouvées</p>
+}
+<div class="cars-container">
+  @for (car of cars; track car.link) {
+    <div class="auto-card">
+      <span class="tag">{{ car.type }}</span>
+      @if (car.image) {
+        <img [src]="car.image" [alt]="car.name" loading="lazy" />
+      }
+      <div class="details">
+        <h3>{{ car.name }}</h3>
+        <p>{{ car.info }}</p>
+        <p class="price">{{ car.price }}</p>
+      </div>
+      <a [href]="car.link" target="_blank">Voir sur automobile.tn</a>
+    </div>
+  }
+</div>

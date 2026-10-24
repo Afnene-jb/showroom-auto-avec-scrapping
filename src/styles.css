@@ -1,0 +1,48 @@
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --border: #dde5df;
+  --text: #1b2a22;
+  --muted: #5f6d65;
+  --accent: #1f5a3d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* Grille et cartes partagées par la recherche et les nouveautés */
+.cars-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 28px;
+  padding: 0 5% 40px;
+}
+.auto-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.auto-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 35px rgba(31, 90, 61, 0.18);
+}
+.auto-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: linear-gradient(#fff, #edf2ee);
+}
+.details h3, .details p { overflow-wrap: anywhere; }
+.details { padding: 16px 20px 4px; flex: 1; }
+.details h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.details p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.7; }

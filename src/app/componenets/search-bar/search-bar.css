@@ -1,0 +1,34 @@
+.container {
+  margin: 40px auto;
+  padding: 10px 22px;
+  width: min(90%, 420px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  transition: border-color 0.3s;
+}
+.container:focus-within { border-color: var(--accent); }
+label { color: var(--accent); font-weight: 600; }
+input {
+  all: unset;
+  flex: 1;
+  color: var(--text);
+}
+fa-icon { cursor: pointer; color: var(--accent); }
+.see_more { padding: 12px 20px 20px; }
+button {
+  all: unset;
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--accent);
+  border-radius: 25px;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover { background: var(--accent); color: #fff; }

@@ -1,0 +1,19 @@
+<div class="detail">
+  <a routerLink="/" class="back">&larr; Back to showroom</a>
+  @if (auto) {
+    <div class="content">
+      <img [src]="`images/${auto.photo}`" [alt]="auto.model" />
+      <div>
+        <h2>{{ auto.brand }} {{ auto.model }}</h2>
+        <ul class="specs">
+          <li><span>Power</span>{{ auto.power }}</li>
+          <li><span>Price</span>{{ auto.price }} TND</li>
+          <li><span>In stock</span>{{ auto.availability }}</li>
+        </ul>
+        <p>{{ auto.description }}</p>
+      </div>
+    </div>
+  } @else {
+    <p>This car does not exist.</p>
+  }
+</div>
