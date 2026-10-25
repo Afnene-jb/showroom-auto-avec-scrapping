@@ -13,7 +13,7 @@ export class AutoDetail {
   auto?: Auto;
 
   constructor(route: ActivatedRoute, autoService: AutoService) {
-    // l'id vient de l adresse /auto/5
+    // l'id vient de l'adresse : /auto/5
     this.auto = autoService.getAuto(Number(route.snapshot.paramMap.get('id')));
   }
 }

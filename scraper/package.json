@@ -1,6 +1,6 @@
 {
   "name": "scraper",
   "private": true,
-  "scripts": { "start": "node server.js" },
+  "scripts": { "snapshot": "node snapshot.js" },
   "dependencies": { "cheerio": "^1.0.0" }
 }

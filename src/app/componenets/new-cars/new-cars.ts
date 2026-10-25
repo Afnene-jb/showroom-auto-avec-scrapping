@@ -1,9 +1,9 @@
 import { Component, Input, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, of, startWith, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, debounceTime, distinctUntilChanged, map, of } from 'rxjs';
 
-interface ScrapedCar {
+interface CarItem {
   type: string; // Neuf ou Occasion
   name: string;
   price: string;
@@ -11,6 +11,9 @@ interface ScrapedCar {
   image: string;
   link: string;
 }
+
+// "Mercedes-Benz" -> "mercedesbenz" : la recherche ignore majuscules, accents et tirets
+const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g, '');
 
 @Component({
   selector: 'app-new-cars',
@@ -27,15 +30,14 @@ export class NewCars {
     this.query$.next(value.trim());
   }
 
-  // à chaque recherche : null pendant le chargement, puis la liste (vide en cas d'erreur)
-  cars$ = this.query$.pipe(
-    debounceTime(400),
-    distinctUntilChanged(),
-    switchMap((q) =>
-      this.http.get<ScrapedCar[]>('http://localhost:3000', { params: { q } }).pipe(
-        catchError(() => of([] as ScrapedCar[])),
-        startWith(null),
-      ),
-    ),
+  // fichier créé par « npm run snapshot » (dossier scraper), lu une seule fois
+  private all$ = this.http.get<CarItem[]>('data/automobile-tn.json').pipe(catchError(() => of([] as CarItem[])));
+
+  // null pendant le chargement, puis les voitures dont le nom contient tous les mots tapés
+  cars$ = combineLatest([this.query$.pipe(debounceTime(300), distinctUntilChanged()), this.all$]).pipe(
+    map(([q, all]) => {
+      const words = q.split(/\s+/).map(norm).filter(Boolean);
+      return all.filter((c) => words.every((w) => norm(c.name).includes(w)));
+    }),
   );
 }

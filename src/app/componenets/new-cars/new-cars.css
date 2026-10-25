@@ -8,9 +8,10 @@
 }
 .msg { margin: 0 5% 30px; color: var(--muted); }
 code { color: var(--accent); }
+.details { padding-bottom: 12px; }
 .price { color: var(--accent) !important; font-weight: 600; font-size: 1rem !important; }
 a {
-  margin: 12px 20px 20px;
+  margin: 0 20px 20px;
   padding: 10px;
   text-align: center;
   border: 1px solid var(--accent);
@@ -21,6 +22,16 @@ a {
   transition: 0.3s;
 }
 a:hover { background: var(--accent); color: #fff; }
+.no-photo {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: linear-gradient(#fff, #edf2ee);
+}
 .tag {
   position: absolute;
   top: 12px;
